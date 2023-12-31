@@ -28,7 +28,7 @@ func (c *ContaCorrente) Depositar(valorDoDeposito float64) (string, float64) {
 	}
 }
 
-func (c *ContaCorrente) Tranferir(valorDaTransferencia float64, contaDestino *ContaCorrente) bool {
+func (c *ContaCorrente) Transferir(valorDaTransferencia float64, contaDestino *ContaCorrente) bool {
 	if valorDaTransferencia < c.saldo && valorDaTransferencia > 0 {
 		c.saldo -= valorDaTransferencia
 		contaDestino.Depositar(valorDaTransferencia)
@@ -41,6 +41,8 @@ func main() {
 	contaDaSilvia := ContaCorrente{titular: "Silvia", saldo: 300}
 	contaDoGustavo := ContaCorrente{titular: "Gustavo", saldo: 100}
 
+	status := contaDoGustavo.Transferir(50, &contaDaSilvia)
+	fmt.Println(status)
 	fmt.Println(contaDaSilvia)
 	fmt.Println(contaDoGustavo)
 }
